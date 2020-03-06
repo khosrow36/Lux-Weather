@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <p>{{ cities }}</p>
+        <p>{{ weather }}</p>
         <button @click="getCities();">Get Cities</button>
         <button @click="getWeaher(752968);">Get Weather</button>
     </div>
@@ -8,20 +8,20 @@
 
 <script>
 // @ is an alias to /src
-import { store, mutations } from "../store";
+import { store, functions } from "../store";
 
 export default {
     name: 'Home',
     components: {
     },
     computed: {
-        cities() {
-            return store.cities;
+        weather() {
+            return store.weather;
         }
     },
     methods: {
-        getCities: mutations.getCities,
-        getWeaher: mutations.getWeather,
+        getCities: functions.getCities,
+        getWeaher: functions.getWeather,
     }
 }
 </script>

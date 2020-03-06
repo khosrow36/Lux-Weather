@@ -3,16 +3,18 @@ import Vue from "vue";
 
 export const store = Vue.observable({
     cities: null,
+    favCities: [],
+    weather: null,
 });
 
-export const mutations = {
+export const functions = {
     getCities() {
         fetch(process.env.VUE_APP_CITIES_URL)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                store.cities=data;
+                store.cities = data;
             });
     },
     getWeather(city) {
@@ -21,7 +23,14 @@ export const mutations = {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
+                store.weather = data;
             });
-    }
+    },
+    addCityToFav(id) {
+        store.favCities.push(id);
+    },
+    delCityFromFav(cityID) {
+        const pos = store.favCities.indexOf(cityID);
+        store.favCities.splice(pos, 1);
+    },
 };
