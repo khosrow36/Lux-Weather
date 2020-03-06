@@ -1,11 +1,18 @@
+// it is NOT vuex store
 import Vue from "vue";
 
 export const store = Vue.observable({
-    count: 0
+    cities: null,
 });
 
 export const mutations = {
-    setCount(count) {
-        store.count = count;
+    getCities() {
+        fetch(process.env.VUE_APP_CITIES_URL)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                store.cities=data;
+            });
     }
 };

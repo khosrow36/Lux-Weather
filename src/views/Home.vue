@@ -1,8 +1,7 @@
 <template>
     <div class="home">
-        <p>Count: {{ count }}</p>
-        <button @click="setCount(count + 1);">+ 1</button>
-        <button @click="setCount(count - 1);">- 1</button>
+        <p>{{ cities }}</p>
+        <button @click="getCities();">Get Cities</button>
     </div>
 </template>
 
@@ -15,12 +14,12 @@ export default {
     components: {
     },
     computed: {
-        count() {
-            return store.count;
+        cities() {
+            return store.cities;
         }
     },
     methods: {
-        setCount: mutations.setCount
+        getCities: mutations.getCities,
     }
 }
 </script>
