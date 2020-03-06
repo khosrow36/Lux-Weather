@@ -2,6 +2,7 @@
     <div class="home">
         <p>{{ cities }}</p>
         <button @click="getCities();">Get Cities</button>
+        <button @click="getWeaher(752968);">Get Weather</button>
     </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
     },
     methods: {
         getCities: mutations.getCities,
+        getWeaher: mutations.getWeather,
     }
 }
 </script>
