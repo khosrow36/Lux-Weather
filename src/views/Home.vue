@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <p>{{ weather }}</p>
+        <p>{{ favCities }}</p>
         <button @click="getCities();">Get Cities</button>
         <button @click="getWeaher(752968);">Get Weather</button>
     </div>
@@ -17,7 +17,10 @@ export default {
     computed: {
         weather() {
             return store.weather;
-        }
+        },
+        favCities() {
+            return store.favCities;
+        },
     },
     methods: {
         getCities: functions.getCities,

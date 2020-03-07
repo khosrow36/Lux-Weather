@@ -1,8 +1,9 @@
 <template>
     <div>
-        <input type="text" v-model="search" placeholder="Szukajka">
+        {{  }}
+        <input type="text" v-model="search" placeholder="Search">
         <div v-for="city in filteredCities" :key="city.id">
-            {{ city.name }}<br>
+            {{ city.name }} <span v-on:click="addCityToFav(city.id)">+</span><br>
         </div>
     </div>
 </template>
@@ -20,11 +21,14 @@ export default {
         functions.getCities();
     },
     computed: {
-        filteredCities: function() {
+        filteredCities() {
             return store.cities.filter((city) => {
                 return city.name.toLowerCase().match(this.search.toLowerCase());
             })
         }
+    },
+    methods: {
+        addCityToFav: functions.addCityToFav,
     },
 }
 </script>
