@@ -17,8 +17,9 @@ export const functions = {
                 store.cities = data;
             });
     },
-    getWeather(city) {
-        fetch(`http://api.openweathermap.org/data/2.5/weather?id=${city}&units=metric&appid=${process.env.VUE_APP_API_KEY}`)
+    getWeather(cities) {
+        console.log(cities);
+        fetch(`https://api.openweathermap.org/data/2.5/group?id=${cities}&units=metric&appid=${process.env.VUE_APP_API_KEY}`)
             .then((response) => {
                 return response.json();
             })

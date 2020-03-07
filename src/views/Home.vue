@@ -1,8 +1,9 @@
 <template>
     <div class="home">
         <p>{{ favCities }}</p>
-        <button @click="getCities();">Get Cities</button>
-        <button @click="getWeaher(752968);">Get Weather</button>
+        <p>{{ weather }}</p>
+        <button @click="generateCitiesString();">Get Cities</button>
+        <button @click="getWeaher();">Get Weather</button>
     </div>
 </template>
 
@@ -24,7 +25,21 @@ export default {
     },
     methods: {
         getCities: functions.getCities,
-        getWeaher: functions.getWeather,
+        generateCitiesString() {
+            let array = store.favCities;
+            let string = '';
+            array.forEach((element)=>{
+                string = string.concat(`${element},`);
+            })
+            string = string.slice(0, -1);
+
+            return string;
+        },
+        getWeaher() {
+            let cities = this.generateCitiesString();
+            console.log(cities);
+            functions.getWeather(cities);
+        },
     }
 }
 </script>
