@@ -2,9 +2,9 @@
 import Vue from "vue";
 
 export const store = Vue.observable({
-    cities: null,
-    favCities: [],
-    weather: null,
+    cities: {},
+    favCities: [753020],
+    weather: {},
 });
 
 export const functions = {
@@ -18,7 +18,6 @@ export const functions = {
             });
     },
     getWeather(cities) {
-        console.log(cities);
         fetch(`https://api.openweathermap.org/data/2.5/group?id=${cities}&units=metric&appid=${process.env.VUE_APP_API_KEY}`)
             .then((response) => {
                 return response.json();

@@ -21,8 +21,11 @@ export default {
         functions.getCities();
     },
     computed: {
+        cities() {
+            return store.cities;
+        },
         filteredCities() {
-            return store.cities.filter((city) => {
+            return this.cities.filter((city) => {
                 return city.name.toLowerCase().match(this.search.toLowerCase());
             })
         }

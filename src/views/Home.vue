@@ -1,7 +1,9 @@
 <template>
     <div class="home">
         <p>{{ favCities }}</p>
-        <p>{{ weather }}</p>
+        <div v-for="single in weather.list" :key=single.id>
+            <weather-info :data="single"></weather-info>
+        </div>
         <button @click="generateCitiesString();">Get Cities</button>
         <button @click="getWeaher();">Get Weather</button>
     </div>
@@ -10,10 +12,12 @@
 <script>
 // @ is an alias to /src
 import { store, functions } from "../store";
+import WeatherInfo from "@/components/WeatherInfo";
 
 export default {
     name: 'Home',
     components: {
+        WeatherInfo
     },
     computed: {
         weather() {
@@ -37,8 +41,8 @@ export default {
         },
         getWeaher() {
             let cities = this.generateCitiesString();
-            console.log(cities);
             functions.getWeather(cities);
+            console.log()
         },
     }
 }
