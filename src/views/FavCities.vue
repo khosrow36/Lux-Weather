@@ -25,7 +25,7 @@ export default {
             return store.cities;
         },
         filteredCities() {
-            return this.cities.filter((city) => {
+            return Object.values(this.cities).filter((city) => {
                 return city.name.toLowerCase().match(this.search.toLowerCase());
             })
         }

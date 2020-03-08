@@ -42,7 +42,6 @@ export default {
         getWeaher() {
             let cities = this.generateCitiesString();
             functions.getWeather(cities);
-            console.log()
         },
     }
 }
