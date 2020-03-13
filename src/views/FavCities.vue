@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p v-if="gettingCitiesStatus==0">Ładowanie...</p>
-        <p v-else-if="ettingCitiesStatus==-1">Błąd ładowania listy miast</p>
+        <b-spinner v-if="gettingCitiesStatus==0" label="Loading..."></b-spinner>
+        <p v-else-if="gettingCitiesStatus==-1">Błąd ładowania listy miast</p>
         <input v-else type="text" v-model="search" placeholder="Search">
         <p v-if="addingStatus==-1">Miasto jest już w ulubionych</p>
         <div v-for="city in filteredCities" :key="city.id">

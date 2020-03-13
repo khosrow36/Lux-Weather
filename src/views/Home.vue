@@ -1,12 +1,10 @@
 <template>
     <div class="home">
-        <p>{{ favCities }}</p>
-        <p v-if="gettingWeatherInfo==0">Ładowanie...</p>
+        <b-spinner v-if="gettingWeatherInfo==0" label="Loading..."></b-spinner>
         <p v-else-if="gettingWeatherInfo==-1">Błąd ładowania</p>
         <div v-for="single in weather.list" :key=single.id>
             <weather-info :data="single"></weather-info>
         </div>
-        <button @click="getWeaher();">Get Weather</button>
     </div>
 </template>
 
