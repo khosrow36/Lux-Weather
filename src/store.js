@@ -27,7 +27,12 @@ export const functions = {
             });
     },
     addCityToFav(id) {
-        store.favCities.push(id);
+        if(store.favCities.find((element) => {
+            return element === id
+        }) == undefined)
+        {
+            store.favCities.push(id);
+        }
     },
     delCityFromFav(cityID) {
         const pos = store.favCities.indexOf(cityID);
