@@ -1,6 +1,10 @@
 <template>
     <div>
-        {{ data }} <br>
+        <div>{{ data.name }}</div>
+        <div>
+            Temperatura: {{ data.main.temp }}
+        </div>
+        {{ data }}
     </div>
 </template>
 
