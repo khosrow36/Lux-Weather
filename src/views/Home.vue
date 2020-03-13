@@ -1,17 +1,18 @@
 <template>
     <div class="home">
         <p>{{ favCities }}</p>
+        <p v-if="gettingWeatherInfo==0">Ładowanie...</p>
+        <p v-else-if="gettingWeatherInfo==-1">Błąd ładowania</p>
         <div v-for="single in weather.list" :key=single.id>
             <weather-info :data="single"></weather-info>
         </div>
-        <button @click="generateCitiesString();">Get Cities</button>
         <button @click="getWeaher();">Get Weather</button>
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import { store, functions } from "../store";
+import { store, states, functions } from "../store";
 import WeatherInfo from "@/components/WeatherInfo";
 
 export default {
@@ -26,6 +27,10 @@ export default {
         favCities() {
             return store.favCities;
         },
+        gettingWeatherInfo() {
+            return states.gettingWeather;
+        },
+
     },
     methods: {
         getCities: functions.getCities,
@@ -43,6 +48,9 @@ export default {
             let cities = this.generateCitiesString();
             functions.getWeather(cities);
         },
+    },
+    mounted() {
+        window.setInterval(this.getWeaher(), 120000);
     }
 }
 </script>
