@@ -1,9 +1,14 @@
 <template>
     <div id="app">
-        <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/fav-cities">Cities</router-link>
-        </div>
+        <b-navbar toggleable="lg" type="dark" style="background-color: #434C5E">
+            <b-navbar-brand href="#">LuxWeather</b-navbar-brand>
+            <b-collapse id="nav-collapse" is-nav>
+                <b-navbar-nav>
+                    <b-nav-item to="/">Pogoda</b-nav-item>
+                    <b-nav-item to="/fav-cities">Miasta</b-nav-item>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
         <router-view/>
     </div>
 </template>
