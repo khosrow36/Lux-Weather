@@ -2,10 +2,16 @@
     <div>
         <b-spinner v-if="gettingCitiesStatus==0" label="Loading..."></b-spinner>
         <p v-else-if="gettingCitiesStatus==-1">Błąd ładowania listy miast</p>
-        <input v-else type="text" v-model="search" placeholder="Search">
-        <p v-if="addingStatus==-1">Miasto jest już w ulubionych</p>
-        <div v-for="city in filteredCities" :key="city.id">
-            {{ city.name }} <span v-on:click="addCityToFav(city.id)">+</span><br>
+        <b-form-input v-else type="text" v-model="search" placeholder="Szukaj"></b-form-input>
+        <b-alert show variant="danger" v-if="addingStatus==-1">Miasto jest już w ulubionych</b-alert>
+        <div
+            v-for="city in filteredCities"
+            :key="city.id"
+            class="list"
+            v-on:click="addCityToFav(city.id)"
+            >
+                {{ city.name }}
+                <b-badge pill>+</b-badge>
         </div>
     </div>
 </template>
@@ -43,3 +49,15 @@ export default {
     },
 }
 </script>
+
+<style>
+.list-group-item {
+    background-color: #2E3440;
+}
+.list {
+    width: 100%;
+    padding: 0.75rem;
+    border: 0.05rem solid black;
+    border-radius: 0.25rem;
+}
+</style>
