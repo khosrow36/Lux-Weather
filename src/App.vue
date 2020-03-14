@@ -30,4 +30,7 @@ html {
     background-color: #2E3440;
     color: #ECEFF4;
 }
+.nord-bg {
+    background-color: #2E3440 !important;
+}
 </style>
