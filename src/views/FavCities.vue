@@ -42,10 +42,16 @@ export default {
             return Object.values(this.cities).filter((city) => {
                 return city.name.toLowerCase().match(this.search.toLowerCase());
             })
-        }
+        },
+        fav() {
+            return store.favCities;
+        },
     },
     methods: {
         addCityToFav: functions.addCityToFav,
+    },
+    beforeDestroy() {
+        functions.addArrayToLocalStore("favCities", store.favCities);
     },
 }
 </script>

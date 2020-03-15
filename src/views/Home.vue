@@ -55,6 +55,7 @@ export default {
         },
     },
     mounted() {
+        store.favCities = functions.readArrayFromLocalStorage("favCities");
         this.getWeaher();
         window.setInterval(this.getWeaher, 120000);
     }

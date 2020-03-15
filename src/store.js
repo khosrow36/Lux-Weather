@@ -61,4 +61,10 @@ export const functions = {
         const pos = store.favCities.indexOf(cityID);
         store.favCities.splice(pos, 1);
     },
+    addArrayToLocalStore(name, value) {
+        localStorage.setItem(name, JSON.stringify(value));
+    },
+    readArrayFromLocalStorage(name) {
+        return JSON.parse(localStorage.getItem(name));
+    },
 };
