@@ -5,6 +5,7 @@
         <div v-for="single in weather.list" :key=single.id>
             <weather-info :data="single"></weather-info>
         </div>
+        <p>Ostatnia aktualizacja: {{ date }}</p>
     </div>
 </template>
 
@@ -17,6 +18,11 @@ export default {
     name: 'Home',
     components: {
         WeatherInfo
+    },
+    data() {
+        return {
+            date: '',
+        }
     },
     computed: {
         weather() {
@@ -45,10 +51,12 @@ export default {
         getWeaher() {
             let cities = this.generateCitiesString();
             functions.getWeather(cities);
+            this.date = (new Date).toLocaleTimeString('pl-PL', { hourCycle: 'h23' });
         },
     },
     mounted() {
-        window.setInterval(this.getWeaher(), 120000);
+        this.getWeaher();
+        window.setInterval(this.getWeaher, 120000);
     }
 }
 </script>
