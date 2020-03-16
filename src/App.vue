@@ -33,4 +33,7 @@ html {
 .nord-bg {
     background-color: #2E3440 !important;
 }
+.pointer {
+	cursor: pointer;
+}
 </style>

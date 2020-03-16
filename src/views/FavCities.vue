@@ -7,7 +7,7 @@
         <div
             v-for="city in filteredCities"
             :key="city.id"
-            class="list"
+            class="list pointer"
             v-on:click="addCityToFav(city.id)"
             >
                 {{ city.name }}
