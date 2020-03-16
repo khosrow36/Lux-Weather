@@ -14,13 +14,36 @@
         <b-container>
             <router-view/>
         </b-container>
+        <footer>
+            <p>LuxWeather is powered by OpenWetherMap</p>
+        </footer>
     </div>
 </template>
 
 
 <style>
 html {
-    background-color: #2E3440;
+    height:100%;
+}
+body {
+    background-color: #2E3440!important;
+    min-height:100%;
+    position:relative;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 70px; /* same as footer's height */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #434C5E;
+    padding-top: 20px;
 }
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
