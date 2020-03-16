@@ -60,6 +60,17 @@ export const functions = {
     delCityFromFav(cityID) {
         const pos = store.favCities.indexOf(cityID);
         store.favCities.splice(pos, 1);
+
+        if(Object.keys(store.weather).length !== 0) {
+            store.weather.list.find((obj, index) => {
+                if(obj.id === cityID) {
+                    store.weather.list.splice(index, 1);
+                    return true;
+                }
+            })
+        }
+
+        this.addArrayToLocalStore("favCities", store.favCities);
     },
     addArrayToLocalStore(name, value) {
         localStorage.setItem(name, JSON.stringify(value));

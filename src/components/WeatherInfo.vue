@@ -24,6 +24,7 @@
                         v-b-tooltip.hover
                         title="Usuń miasto z ulubionych"
                         class="pointer"
+                        v-on:click="delCityFromFav(data.id)"
                     ></b-icon-x-circle>
                 </p>
             </b-col>
@@ -32,6 +33,8 @@
 </template>
 
 <script>
+import { functions } from "../store";
+
 export default {
     name: 'WeatherInfo',
     props: {
@@ -42,7 +45,11 @@ export default {
             const hour = (new Date()).getHours();
             if(hour <= 17) return 'd';
             else return 'n';
-        }
+        },
+        delCityFromFav(id) {
+            functions.delCityFromFav(id);
+            this.$forceUpdate();
+        },
     },
 }
 </script>

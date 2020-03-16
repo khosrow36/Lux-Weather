@@ -10,7 +10,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import { store, states, functions } from "../store";
 import WeatherInfo from "@/components/WeatherInfo";
 
