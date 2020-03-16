@@ -7,12 +7,18 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: () => import('../views/Home.vue')
+        component: () => import('../views/Home.vue'),
+        meta: {
+            title: 'Pogoda',
+        },
     },
     {
         path: '/fav-cities',
         name: 'FavCities',
-        component: () => import('../views/FavCities.vue')
+        component: () => import('../views/FavCities.vue'),
+        meta: {
+            title: 'Ulubione Miasta',
+        },
     }
 ]
 
@@ -21,5 +27,10 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 })
+
+router.beforeEach((to, from, next) => {
+    document.title = `${to.meta.title} | LuxWeather`;
+    next();
+});
 
 export default router
