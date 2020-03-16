@@ -19,6 +19,7 @@
                         v-b-tooltip.hover
                         title="Zmiana wartości w czasie"
                         class="pointer"
+                        v-on:click="showGraph()"
                     ></b-icon-graph-up>
                     <b-icon-x-circle
                         v-b-tooltip.hover
@@ -29,16 +30,36 @@
                 </p>
             </b-col>
         </b-row>
+        <div v-if="graphClicked==true">
+            <h5>Temperatura</h5>
+            <Graph :dataArray="tempArray" />
+            <h5>Ciśnienie</h5>
+            <Graph :dataArray="pressureArray" />
+            <h5>Wilgotność</h5>
+            <Graph :dataArray="humidityArray" />
+        </div>
     </b-card>
 </template>
 
 <script>
 import { functions } from "../store";
+import Graph from "@/components/Graph"
 
 export default {
     name: 'WeatherInfo',
+    components: {
+        Graph,
+    },
     props: {
         data: Object,
+    },
+    data() {
+        return {
+            graphClicked: false,
+            tempArray: [],
+            pressureArray: [],
+            humidityArray: [],
+        }
     },
     methods: {
         timeOfDay() {
@@ -50,6 +71,21 @@ export default {
             functions.delCityFromFav(id);
             this.$forceUpdate();
         },
+        showGraph() {
+            this.graphClicked === true ? this.graphClicked = false : this.graphClicked = true;
+        },
+        addToGraph(array,value) {
+            if(array.length === 0){
+                array.push(value);
+                array.push(value);
+            }
+            else array.push(value);
+        },
+    },
+    beforeUpdate() {
+        this.addToGraph(this.tempArray,this.data.main.temp);
+        this.addToGraph(this.pressureArray,this.data.main.pressure);
+        this.addToGraph(this.humidityArray,this.data.main.humidity);
     },
 }
 </script>
