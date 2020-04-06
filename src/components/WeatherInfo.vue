@@ -64,7 +64,8 @@ export default {
     methods: {
         timeOfDay() {
             const hour = (new Date()).getHours();
-            if(hour <= 17 && hour >= 5) return 'd';
+            console.log(hour);
+            if(hour <= 17 && hour <= 5) return 'd';
             else return 'n';
         },
         delCityFromFav(id) {
